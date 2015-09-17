@@ -1,3 +1,7 @@
 from django.contrib import admin
+from restaurants import models
 
-# Register your models here.
+
+admin.site.register(models.Cuisine)
+admin.site.register(models.PhoneNumber)
+admin.site.register(models.Restaurant)
