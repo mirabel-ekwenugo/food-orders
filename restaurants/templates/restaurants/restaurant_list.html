@@ -6,7 +6,18 @@
 </head>
 
 <body>
-    <h1>Hello World!</h1>
+    <form method="GET">
+        <select name="cuisine">
+            <option value="">All</option>
+            {% for cuisine in cuisine_list %}
+            <option value="{{cuisine.name}}">
+                {{cuisine.name}}
+            </option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Search">
+    </form>
+    <h1>RESTAURANTS</h1>
     <ul>
         {% for restaurant in object_list %}
         <li>{{ restaurant.name }} - {{ restaurant.cuisine_text }}</li>
