@@ -10,10 +10,10 @@ class Cuisine(models.Model):
 
 
 class PhoneNumber(models.Model):
-	phone_number = PhoneNumberField()
+    phone_number = PhoneNumberField()
 
-	def __str__(self):
-		return self.phone_number
+    def __str__(self):
+        return '%s' % self.phone_number
 
 
 class Restaurant(models.Model):
@@ -24,4 +24,7 @@ class Restaurant(models.Model):
     email_address = models.EmailField()
 
     def __str__(self):
-		return self.name
+        return self.name
+
+    def cuisine_text(self):
+        return ", ".join([cuisine.name for cuisine in self.cuisines.all()])

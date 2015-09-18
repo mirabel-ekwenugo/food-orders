@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.generic import RedirectView
+from restaurants import urls as restaurants_urls
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', RedirectView.as_view(url='restaurants', permanent=True)), # Redirect base URL to app1
+    url(r'^restaurants/', include(restaurants_urls), name='restaurants'),
 ]

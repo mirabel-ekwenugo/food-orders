@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>food-orders</title>
+</head>
+
+<body>
+    <h1>Hello World!</h1>
+    <ul>
+        {% for restaurant in object_list %}
+        <li>{{ restaurant.name }} - {{ restaurant.cuisine_text }}</li>
+        {% empty %}
+        <li>No Restaurant found!!!</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
