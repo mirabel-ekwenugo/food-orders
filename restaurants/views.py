@@ -9,6 +9,7 @@ class RestaurantListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(RestaurantListView, self).get_context_data(**kwargs)
         context['cuisine_list'] = restaurants_models.Cuisine.objects.all()
+        context['cuisine_name'] = self.request.GET.get('cuisine')
         return context
 
     def get_queryset(self):

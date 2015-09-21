@@ -19,11 +19,10 @@
 <body>
     <div class="container wrapper">
         <form method="GET" class="form-inline">
-            {% csrf_token %}
             <select name="cuisine" class="form-control">
                 <option value="">All</option>
                 {% for cuisine in cuisine_list %}
-                <option value="{{cuisine.name}}">
+                <option value="{{cuisine.name}}" {% if cuisine_name == cuisine.name %} selected {% endif %}>
                     {{cuisine.name}}
                 </option>
                 {% endfor %}
