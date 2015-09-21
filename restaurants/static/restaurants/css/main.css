@@ -1,6 +1,11 @@
 body {
 	background-image: url("../image/bg-image.jpg");
-	background-repeat: none;
+	background-color: #222;
+	background-repeat: no-repeat;
 	background-size: cover;
 	color: #fff;
+}
+
+.wrapper {
+	padding-top: 20px;
 }
