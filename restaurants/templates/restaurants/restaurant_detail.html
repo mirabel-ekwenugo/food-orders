@@ -1,0 +1,32 @@
+{% extends "restaurants/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+
+{% block title %}Restaurant List{% endblock %}
+
+{% block content %}
+<div class=" container-fluid restaurant-detail">
+	<div class="row">
+		<div class="col-md-6">
+			<h4>{{ object.name }}</h4>
+            <p>{{ object.description }}</p>
+            <p>{{ object.phone_num }}</p>
+            <p>{{ object.email_address }}</p>
+		</div>
+		<div class="col-md-6">
+			<ul>
+				{% for menu_item in object.menu.all %}
+				<li>
+					<h2>{{menu_item.name}}</h2>
+					<p>{{menu_item.description}}</p>
+					<p>{{menu_item.cost}}</p>
+					<img src="{{menu_item.image.url}}">
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

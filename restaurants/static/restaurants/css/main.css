@@ -6,6 +6,30 @@ body {
 	color: #fff;
 }
 
+input {
+	color: #222;
+}
+
+h1 {
+	text-transform: uppercase;
+}
+
 .wrapper {
-	padding-top: 20px;
+	margin-top: 20px;
+}
+
+.btn-lg {
+	padding: 30px 30px;
+	margin-top: 100px;
+}
+
+.app-font {
+	font-family: 'Dancing Script', cursive;
+	font-size: 3em;
+}
+
+.restaurant-detail {
+	background-color: #222;
+	padding: 0 0;
+	color: #fff;
 }

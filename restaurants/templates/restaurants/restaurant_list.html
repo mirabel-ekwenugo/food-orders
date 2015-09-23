@@ -1,48 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "restaurants/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
 
-<head>
-    <title>food-orders</title>
-    {# Load static file #}
-    {% load staticfiles %}
-    {# Load bootstrap #}
-    {% load bootstrap3 %}
-    {# Load CSS and JavaScript #}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    {# Display django.contrib.messages as Bootstrap alerts #}
-    {% bootstrap_messages %}
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{% static 'restaurants/css/main.css' %}" />
-</head>
+{% block title %}Welcome to Food-orders{% endblock %}
 
-<body>
-    <div class="container wrapper">
-        <form method="GET" class="form-inline">
-            <select name="cuisine" class="form-control">
-                <option value="">All</option>
-                {% for cuisine in cuisine_list %}
-                <option value="{{cuisine.name}}" {% if cuisine_name == cuisine.name %} selected {% endif %}>
-                    {{cuisine.name}}
-                </option>
-                {% endfor %}
-            </select>
-            {% buttons %}
-            <button type="submit" class="btn btn-default">
-                {% bootstrap_icon "glyphicon glyphicon-search" %} Search
-            </button>
-            {% endbuttons %}
-        </form>
-        <h1>RESTAURANTS</h1>
-        <ul>
+{% block content %}
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <form method="GET" class="form-inline" >
+                    <select name="cuisine" class="form-control">
+                        <option value="">All</option>
+                        {% for cuisine in cuisine_list %}
+                        <option value="{{cuisine.name}}" {% if cuisine_name == cuisine.name %} selected {% endif %}>
+                            {{cuisine.name}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    {% buttons %}
+                    <button type="submit" class="btn btn-default">
+                        filter
+                    </button>
+                    {% endbuttons %}
+                </form>
+            </div>
+        </nav>
+
+        <h1>Restaurants</h1>
+
+        <div class="list-group">
             {% for restaurant in object_list %}
-            <li>{{ restaurant.name }} - {{ restaurant.cuisine_text }}</li>
+
+            <a href="{% url 'restaurant-detail' restaurant.id %}" class="list-group-item">
+            <h4 class="list-group-item-heading">{{ restaurant.name }} - {{ restaurant.cuisine_text }}</h4>
+            <p class="list-group-item-text">{{ restaurant.description }}</p>
+            </a>
+
             {% empty %}
             <li>No Restaurant found!!!</li>
             {% endfor %}
-        </ul>
-    </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-</body>
 
-</html>
+        </div>
+    </div>
+        {% endblock %}

@@ -1,0 +1,26 @@
+{% extends "restaurants/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+
+{% block title %}Welcome to Food-orders{% endblock %}
+
+{% block content %}
+        <div class="container">
+            <h1 class="app-font">Welcome to Food-orders</h1>
+            <form method="GET" class="form-inline" action="{% url 'restaurant-list' %}">
+                <input type="text" id="locator" class="form-control">
+                {% buttons %}
+                <button type="submit" class="btn btn-success"/>
+                    {% bootstrap_icon "glyphicon glyphicon-search" %} SEARCH FOR RESTAURANTS
+                </button>
+                {% endbuttons %}
+            </form>
+        </div>
+{% endblock %}
+        
+{% block footer %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLc1P5zf2dEpDkysGaV3ELbP08pk_k18I&callback=getLocation"
+        async defer></script>
+    <script type="text/javascript" src="{% static 'restaurants/js/app.js' %}"></script>
+{% endblock %}

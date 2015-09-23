@@ -1,6 +1,11 @@
-from django.shortcuts import render
+from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from restaurants import models as restaurants_models
+
+
+class HomePageView(TemplateView):
+    template_name = "restaurants/index.html"
 
 
 class RestaurantListView(ListView):
@@ -18,3 +23,7 @@ class RestaurantListView(ListView):
         if cuisine_name:
             queryset = queryset.filter(cuisines__name=cuisine_name)
         return queryset
+
+
+class RestaurantDetailView(DetailView):
+    model = restaurants_models.Restaurant
