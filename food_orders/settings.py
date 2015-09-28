@@ -19,10 +19,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'd5i$s^&##i&7nl68()wg)xn^s=1xxvfhr1hcq9mnbhlow6*2cp'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'd5i$s^&##i&7nl68()wg)xn^s=1xxvfhr1hcq9mnbhlow6*2cp')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', False)
 
 ALLOWED_HOSTS = ['food-orders.herokuapp.com']
 
