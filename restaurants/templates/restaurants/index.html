@@ -6,6 +6,12 @@
 {% block title %}Welcome to Food-orders{% endblock %}
 
 {% block content %}
+        <nav class="nav nav-bar">
+            <div class="pull-right" style="padding: 20px;">
+                <a href="{% url 'account_login' %}">Sign In</a>
+                <a href="{% url 'account_signup' %}">Sign Up</a>
+            </div>
+        </nav>
         <div class="container">
             <h1 class="app-font">Welcome to Food-orders</h1>
             <form method="GET" class="form-inline" action="{% url 'restaurant-list' %}">

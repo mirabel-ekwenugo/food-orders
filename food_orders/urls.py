@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', RedirectView.as_view(url='restaurants', permanent=True)), # Redirect base URL to app1
     url(r'^restaurants/', include(restaurants_urls), name='restaurants'),
+    url(r'^accounts/', include('allauth.urls')),
 ]
