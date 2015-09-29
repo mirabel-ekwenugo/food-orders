@@ -1,14 +1,20 @@
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(lookupAddress);
+        navigator.geolocation.getCurrentPosition(lookupAddress, locationError, {timeout: 20000});
     } else {
         alert("Geolocation is not supported by this browser.")
     }
 };
 
 function showAddress(address) {
-    $('#locator').val(address)
-    console.log(address)
+    console.log(address);
+    if (!$('#locator').val()) {
+        $('#locator').val(address);
+    };
+};
+
+function locationError(err) {
+    console.log(err);
 };
 
 function lookupAddress(position) {
