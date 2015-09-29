@@ -23,7 +23,7 @@ class MenuItem(models.Model):
     name = models.CharField(max_length=50)
     cost = MoneyField(max_digits=10, decimal_places=2, default_currency='NGN')
     description = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to='menu_item')
 
     def __str__(self):
         return '%s - %s' % (self.name, self.cost)
