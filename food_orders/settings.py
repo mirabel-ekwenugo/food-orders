@@ -96,7 +96,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# to test with AWS do this on the terminal - export AWS_STORAGE_BUCKET_NAME=food-orders
+# to test with AWS do this on the terminal - export AWS_STORAGE_BUCKET_NAME=food-orders-dev
 MEDIAFILES_LOCATION = 'media'
 
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
