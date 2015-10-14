@@ -8,8 +8,12 @@
 {% block content %}
         <nav class="nav nav-bar">
             <div class="pull-right" style="padding: 20px;">
-                <a href="{% url 'account_login' %}">Sign In</a>
-                <a href="{% url 'account_signup' %}">Sign Up</a>
+                {% if user.is_anonymous %}
+                    <a href="{% url 'account_login' %}">Sign In</a>
+                    <a href="{% url 'account_signup' %}">Sign Up</a>
+                {% else %}
+                    <a href="{% url 'account_logout' %}">Sign Out</a>
+                {% endif %}
             </div>
         </nav>
         <div class="container">

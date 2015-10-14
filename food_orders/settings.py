@@ -12,14 +12,25 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from email.utils import formataddr
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+HOME_DIR = os.path.expanduser("~")
+
+ADMINS = (
+    (
+        os.environ.get('ADMIN_NAME', 'admin'),
+        os.environ.get('ADMIN_EMAIL', 'example@example.com')
+    ),
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'd5i$s^&##i&7nl68()wg)xn^s=1xxvfhr1hcq9mnbhlow6*2cp')
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'd5i$s^&##i&7nl68()wg)xn^s=1xxvfhr1hcq9mnbhlow6*2cp')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', False)
@@ -48,7 +59,7 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.facebook',
-    # 'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.google',
 )
 SITE_ID = 1
 
@@ -76,6 +87,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
             ],
         },
     },
@@ -132,13 +144,6 @@ STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 
-# For Django 1.7 and below, use:
-TEMPLATE_CONTEXT_PROCESSORS = (
-    # Required by `allauth` template tags
-    'django.core.context_processors.request',
-)
-
-
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -147,3 +152,19 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_REDIRECT_URL = "/"
+
+# If Heroku addons start using EMAIL_URL, switch to dj-email-url
+DEFAULT_FROM_EMAIL = formataddr(ADMINS[0])
+EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER')
+EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT')
+EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN')
+EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
+EMAIL_USE_TLS = True
+
+if not EMAIL_HOST:
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = '%s/source/django_emails/food_orders/emails' % HOME_DIR
+
+# GOOGLE
+# 972464308564-c2sni33um2p5prtk8skgjf98h7casphg.apps.googleusercontent.com  CLIENT_ID
+# P5Cj7bUiSqhtY05XigW8DiCa   CLIENT SECRET

@@ -1,6 +1,6 @@
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(lookupAddress, locationError, {timeout: 20000});
+        navigator.geolocation.getCurrentPosition(lookupAddress, locationError, {timeout: 10000});
     } else {
         alert("Geolocation is not supported by this browser.")
     }

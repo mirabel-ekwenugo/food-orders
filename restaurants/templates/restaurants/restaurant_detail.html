@@ -8,20 +8,20 @@
 {% block content %}
 <div class=" container-fluid restaurant-detail">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-2">
 			<h4>{{ object.name }}</h4>
             <p>{{ object.description }}</p>
             <p>{{ object.phone_num }}</p>
             <p>{{ object.email_address }}</p>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-10">
 			<ul>
 				{% for menu_item in object.menu.all %}
-				<li>
+				<li class="category">
 					<h2>{{menu_item.name}}</h2>
 					<p>{{menu_item.description}}</p>
 					<p>{{menu_item.cost}}</p>
-					<img src="{{menu_item.image.url}}">
+					<img src="{{menu_item.image.url}}" width="150px" height="150px">
 				</li>
 				{% endfor %}
 			</ul>

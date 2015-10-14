@@ -29,7 +29,14 @@ h1 {
 }
 
 .restaurant-detail {
-	background-color: #222;
+	background-color: #222;az
 	padding: 0 0;
 	color: #fff;
+}
+
+.category {
+position:relative;
+display: inline-block;
+float:left;
+padding:10px;
 }
